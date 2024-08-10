@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Cartas - 21</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Cartas - 21</h1>
+    <button onclick="iniciarJuego()">Repartir Cartas</button>
+    <button id="revelar" onclick="revelarCartas()" style="display:none;">Revelar Cartas</button>
+
+    <div id="cartasUsuario" style="margin-top: 20px;"></div>
+    <div id="cartasMaquina" style="margin-top: 20px;"></div>
+    <p id="resultado"></p>
+
+    <script>
+        let cartasUsuario = [];
+        let cartasMaquina = [];
+        let cartaOcultaUsuario;
+        let cartaOcultaMaquina;
+
+        function cartaAleatoria() {
+            return Math.floor(Math.random() * 10) + 1;
+        }
+
+        function calcularPuntaje(cartas, cartaOculta = 0) {
+            return cartas.reduce((a, b) => a + b, cartaOculta);
+        }
+
+        function iniciarJuego() {
+            cartasUsuario = [cartaAleatoria(), cartaAleatoria()];
+            cartasMaquina = [cartaAleatoria(), cartaAleatoria()];
+            
+            cartaOcultaUsuario = cartaAleatoria();
+            cartaOcultaMaquina = cartaAleatoria();
+            
+            document.getElementById('cartasUsuario').textContent = `Tus cartas: ${cartasUsuario.join(', ')}`;
+            document.getElementById('cartasMaquina').textContent = "La máquina tiene sus cartas ocultas.";
+            document.getElementById('revelar').style.display = "inline";
+            document.getElementById('resultado').textContent = "";
+        }
+
+        function revelarCartas() {
+            const puntajeUsuario = calcularPuntaje(cartasUsuario, cartaOcultaUsuario);
+            const puntajeMaquina = calcularPuntaje(cartasMaquina, cartaOcultaMaquina);
+            
+            document.getElementById('cartasUsuario').textContent += `, Carta Oculta: ${cartaOcultaUsuario}`;
+            document.getElementById('cartasMaquina').textContent = `Cartas de la máquina: ${cartasMaquina.join(', ')}, Carta Oculta: ${cartaOcultaMaquina}`;
+
+            if (puntajeUsuario > 21 && puntajeMaquina > 21) {
+                document.getElementById('resultado').textContent = "Ambos jugadores han superado 21. No hay ganador.";
+            } else if (puntajeUsuario > 21) {
+                document.getElementById('resultado').textContent = "Has superado 21. La máquina gana.";
+            } else if (puntajeMaquina > 21) {
+                document.getElementById('resultado').textContent = "La máquina ha superado 21. Tú ganas.";
+            } else if (puntajeUsuario > puntajeMaquina) {
+                document.getElementById('resultado').textContent = "Tú ganas.";
+            } else if (puntajeMaquina > puntajeUsuario) {
+                document.getElementById('resultado').textContent = "La máquina gana.";
+            } else {
+                document.getElementById('resultado').textContent = "Es un empate.";
+            }
+
+            document.getElementById('revelar').style.display = "none";
+        }
+    </script>
+</body>
+</html>

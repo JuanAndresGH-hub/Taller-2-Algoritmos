@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación de Triángulo</title>
+</head>
+<body>
+    <h1>Verificación de Triángulo Válido</h1>
+
+    <label for="angulo1">Ángulo 1:</label>
+    <input type="number" id="angulo1" min="0" max="180" required>
+    <br><br>
+
+    <label for="angulo2">Ángulo 2:</label>
+    <input type="number" id="angulo2" min="0" max="180" required>
+    <br><br>
+
+    <label for="angulo3">Ángulo 3:</label>
+    <input type="number" id="angulo3" min="0" max="180" required>
+    <br><br>
+
+    <button onclick="verificarTriangulo()">Verificar Triángulo</button>
+
+    <h2 id="resultado"></h2>
+
+    <script>
+        function verificarTriangulo() {
+            const angulo1 = parseInt(document.getElementById("angulo1").value);
+            const angulo2 = parseInt(document.getElementById("angulo2").value);
+            const angulo3 = parseInt(document.getElementById("angulo3").value);
+
+            const sumaAngulos = angulo1 + angulo2 + angulo3;
+
+            if (sumaAngulos === 180) {
+                document.getElementById("resultado").innerText = "El triángulo es válido.";
+            } else {
+                document.getElementById("resultado").innerText = "El triángulo no es válido.";
+            }
+        }
+    </script>
+</body>
+</html>

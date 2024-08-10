@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Sándwich</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pedido de Sándwich</h1>
+    <p>Seleccione el tamaño del sándwich y los ingredientes adicionales:</p>
+    
+    <label for="tamano">Tamaño del sándwich:</label>
+    <select id="tamano">
+        <option value="pequeno">Pequeño</option>
+        <option value="grande">Grande</option>
+    </select>
+    
+    <p>Seleccione los ingredientes adicionales:</p>
+    <input type="checkbox" id="tocineta" value="3000">
+    <label for="tocineta">Tocineta ($3000)</label><br>
+
+    <input type="checkbox" id="jalapeno" value="0">
+    <label for="jalapeno">Jalapeño (Gratis)</label><br>
+
+    <input type="checkbox" id="pavo" value="3000">
+    <label for="pavo">Pavo ($3000)</label><br>
+
+    <input type="checkbox" id="queso" value="2500">
+    <label for="queso">Queso ($2500)</label><br>
+
+    <button onclick="calcularCosto()">Calcular Costo</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function calcularCosto() {
+            const tamano = document.getElementById('tamano').value;
+            
+            let precioBase = tamano === 'pequeno' ? 6000 : 12000;
+
+            let costoIngredientes = 0;
+
+            if (document.getElementById('tocineta').checked) {
+                costoIngredientes += parseInt(document.getElementById('tocineta').value);
+            }
+            if (document.getElementById('jalapeno').checked) {
+                costoIngredientes += parseInt(document.getElementById('jalapeno').value);
+            }
+            if (document.getElementById('pavo').checked) {
+                costoIngredientes += parseInt(document.getElementById('pavo').value);
+            }
+            if (document.getElementById('queso').checked) {
+                costoIngredientes += parseInt(document.getElementById('queso').value);
+            }
+            const costoTotal = precioBase + costoIngredientes;
+        
+            const resultado = document.getElementById('resultado');
+            resultado.textContent = `El costo total de su sándwich es $${costoTotal}.`;
+        }
+    </script>
+</body>
+</html>

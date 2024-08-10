@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Costos de Gimnasio</title>
+</head>
+<body>
+    <h1>Calculadora de Costos de Gimnasio</h1>
+
+    <label for="duracion">Seleccione la duración de la membresía:</label>
+    <select id="duracion" required>
+        <option value="15">15 días - $18,000</option>
+        <option value="30">30 días - $35,000</option>
+        <option value="90">3 meses - $86,000</option>
+    </select>
+    <br><br>
+
+    <button onclick="calcularCosto()">Calcular Costo</button>
+
+    <h2 id="resultado"></h2>
+
+    <script>
+        function calcularCosto() {
+            const duracion = document.getElementById("duracion").value;
+            let costo = 0;
+
+            switch (duracion) {
+                case "15":
+                    costo = 18000;
+                    break;
+                case "30":
+                    costo = 35000;
+                    break;
+                case "90":
+                    costo = 86000;
+                    break;
+                default:
+                    costo = 0;
+            }
+
+            document.getElementById("resultado").innerText = `El costo de la membresía es: $${costo}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico de Estado de Computadora</title>
+</head>
+<body>
+    <h1>Diagnóstico de Estado de Computadora</h1>
+
+    <label for="pitido">¿La computadora emite un pitido al iniciarse?</label>
+    <select id="pitido">
+        <option value="si">Sí</option>
+        <option value="no">No</option>
+    </select>
+    <br><br>
+
+    <label for="discoDuro">¿El disco duro gira?</label>
+    <select id="discoDuro">
+        <option value="si">Sí</option>
+        <option value="no">No</option>
+    </select>
+    <br><br>
+
+    <button onclick="diagnosticar()">Diagnosticar</button>
+
+    <h2 id="resultado"></h2>
+
+    <script>
+        function diagnosticar() {
+            const pitido = document.getElementById("pitido").value;
+            const discoDuro = document.getElementById("discoDuro").value;
+            let mensaje = "";
+
+            if (pitido === "si" && discoDuro === "si") {
+                mensaje = "Póngase en contacto con el técnico de apoyo.";
+            } else if (pitido === "si" && discoDuro === "no") {
+                mensaje = "Verificar contactos de la unidad.";
+            } else if (pitido === "no" && discoDuro === "no") {
+                mensaje = "Traiga la computadora para repararla en la central.";
+            } else if (pitido === "no" && discoDuro === "si") {
+                mensaje = "Compruebe las conexiones de altavoces.";
+            }
+
+            document.getElementById("resultado").innerText = mensaje;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Calificaciones</title>
+</head>
+<body>
+    <h1>Calculadora de Calificaciones</h1>
+
+    <label for="fisica">Física:</label>
+    <input type="number" id="fisica" min="0" max="10" required>
+    <br><br>
+    
+    <label for="quimica">Química:</label>
+    <input type="number" id="quimica" min="0" max="10" required>
+    <br><br>
+    
+    <label for="biologia">Biología:</label>
+    <input type="number" id="biologia" min="0" max="10" required>
+    <br><br>
+    
+    <label for="matematicas">Matemáticas:</label>
+    <input type="number" id="matematicas" min="0" max="10" required>
+    <br><br>
+    
+    <label for="informatica">Informática:</label>
+    <input type="number" id="informatica" min="0" max="10" required>
+    <br><br>
+    
+    <button onclick="calcularPromedio()">Calcular Promedio y Calificación</button>
+    
+    <h2 id="resultado"></h2>
+
+    <script>
+        function calcularPromedio() {
+            const fisica = parseFloat(document.getElementById("fisica").value);
+            const quimica = parseFloat(document.getElementById("quimica").value);
+            const biologia = parseFloat(document.getElementById("biologia").value);
+            const matematicas = parseFloat(document.getElementById("matematicas").value);
+            const informatica = parseFloat(document.getElementById("informatica").value);
+
+            const promedio = (fisica + quimica + biologia + matematicas + informatica) / 5;
+            let calificacion = "";
+
+            if (promedio >= 0 && promedio <= 5.99) {
+                calificacion = "Mala";
+            } else if (promedio >= 6 && promedio <= 8) {
+                calificacion = "Buena";
+            } else if (promedio > 8) {
+                calificacion = "Excelente";
+            }
+
+            const porcentaje = (promedio / 10) * 100;
+
+            document.getElementById("resultado").innerText = `Promedio: ${promedio.toFixed(2)}\nPorcentaje: ${porcentaje.toFixed(2)}%\nCalificación: ${calificacion}`;
+        }
+    </script>
+</body>
+</html>

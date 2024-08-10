@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación de Defectos en Automóviles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Verificación de Defectos en Automóviles</h1>
+    <p>Ingrese el número de modelo de su automóvil:</p>
+    
+    <input type="number" id="numeroModelo" placeholder="Número de modelo">
+    <button onclick="verificarDefecto()">Verificar</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function verificarDefecto() {
+            const modelosDefectuosos = [119, 179, 189, 190, 191, 192, 193, 194, 195, 221, 780];
+
+            const numeroModelo = parseInt(document.getElementById('numeroModelo').value);
+            
+            const resultado = document.getElementById('resultado');
+            
+            if (modelosDefectuosos.includes(numeroModelo)) {
+                resultado.textContent = "El automóvil está defectuoso, llevar a garantía.";
+                resultado.style.color = "red";
+            } else {
+                resultado.textContent = "Su automóvil no está defectuoso.";
+                resultado.style.color = "green";
+            }
+        }
+    </script>
+</body>
+</html>

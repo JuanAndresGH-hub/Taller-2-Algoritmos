@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Precios de Fotocopias</title>
+</head>
+<body>
+    <h1>Calculadora de Precios de Fotocopias</h1>
+
+    <label for="copias">Número de copias:</label>
+    <input type="number" id="copias" min="0" required>
+    <br><br>
+
+    <button onclick="calcularPrecio()">Calcular Precio</button>
+
+    <h2 id="precioPorCopia"></h2>
+    <h2 id="precioTotal"></h2>
+
+    <script>
+        function calcularPrecio() {
+            const copias = parseInt(document.getElementById("copias").value);
+
+            let precioPorCopia = 0;
+
+            if (copias >= 1 && copias <= 499) {
+                precioPorCopia = 120;
+            } else if (copias >= 500 && copias <= 749) {
+                precioPorCopia = 100;
+            } else if (copias >= 750 && copias <= 999) {
+                precioPorCopia = 80;
+            } else if (copias >= 1000) {
+                precioPorCopia = 50;
+            }
+            const precioTotal = precioPorCopia * copias;
+
+            document.getElementById("precioPorCopia").innerText = `Precio por copia: $${precioPorCopia}`;
+            document.getElementById("precioTotal").innerText = `Precio total: $${precioTotal}`;
+        }
+    </script>
+</body>
+</html>
